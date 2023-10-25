@@ -1,10 +1,10 @@
-import streamlit as st
-import numpy as np
-import tensorflow as tf
 import warnings
 from pathlib import Path
+import tensorflow as tf
+import numpy as np
 np.random.seed(42)
 warnings.filterwarnings('ignore')
+
 
 url = "https://storage.googleapis.com/download.tensorflow.org/data/spa-eng.zip"
 path = tf.keras.utils.get_file(
@@ -43,17 +43,5 @@ def translate(sentence_en):
     return translation.strip()
 
 
-model = tf.keras.models.load_model('results/transformer')
-
-st.title('English to Spanish Translator')
-
-input = st.text_input('Text to be translated')
-predition = translate(input)
-
-
-def onclick():
-    predition = translate(input)
-    st.success(predition)
-
-
-trigger = st.button('Translate', on_click=onclick)
+pred = translate("I like football")
+print(pred)
